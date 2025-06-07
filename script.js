@@ -1,7 +1,7 @@
 const typingText = document.querySelector('.typing-text p');
 const input = document.querySelector('.wrapper .input-field');
 const time = document.querySelector('.time span b');
-const mistakes = document.querySelector('.mistake p');
+const mistakes = document.querySelector('.mistake span');
 const wpm = document.querySelector('.wpm span');
 const cpm = document.querySelector('.cpm span');
 const btn = document.querySelector('button');
@@ -37,17 +37,40 @@ function loadparagraph(){
         typingText.innerHTML += `<span>${char}</span>`;
     }
     typingText.querySelectorAll('span')[0].classList.add('active');
+    document.addEventListener("keydown", ()=>{
+        input.focus();
+    })
+    typingText.addEventListener("click", () => {
+        input.focus();
+    })
 }
 
 //Handle User Input
 
 function initTyping(){
-    const char = input.querySelectorAll('span');
-    const typedChar = input.ariaValueMax.charAt(charIndex);
+    const char = typingText.querySelectorAll('span');
+    const typedChar = input.value.charAt(charIndex);
     if(charIndex < char.length && timeLeft > 0){
-        if(char[charIndex].innerHTML === typedChar){
-            char[charIndex].classList.add('correct');
+
+        if(!isTyping){
+            timer = setInterval(initTime, 1000);
+            isTyping = true;
         }
+
+        if(char[charIndex].innerText === typedChar){
+            char[charIndex].classList.add('correct');
+            console.log("correct");
+        }
+        else{
+            mistake++;
+            char[charIndex].classList.add('incorrect');
+            console.log("incorrect");
+        }
+        charIndex++;
+        char[charIndex].classList.add('active');
+            console.log("incorrect");
+
+        mistakes.innerText = mistake;
     }
 }
 

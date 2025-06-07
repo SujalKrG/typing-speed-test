@@ -22,6 +22,13 @@ body{
     box-shadow: 0px 10px 15px rgba(0, 0, blue, alpha);
 }
 
+.wrapper .input-field{
+    padding: 13px 20px 0;
+    position: absolute;
+    opacity: 0;
+    z-index: -99;
+}
+
 .wrapper .content-box{
     padding: 13px 20px 0;
     border: 1px solid #bfbfbf;
@@ -75,4 +82,20 @@ body{
 
 .typing-text p span.active{
     color: orange;
+}
+
+.typing-text p span.correct{
+    color: green;
+}
+
+.typing-text p span.incorrect{
+    color: red;
+    outline: 1px solid #fff;
+    background: #ffc0cb;
+    border-radius: 4px;
+}
+
+::selection{
+    color: #fff;
+    background: orange;
 }
